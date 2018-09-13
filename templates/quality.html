@@ -46,14 +46,36 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
 	<h1>Quality: About This Data Set</h1>
-        <p>Write a brief summary about the quality of the data set here</a></p>
+        <p>This dataset is not complete, due to the difficulties in collecting early samples. So, there are some missing fields in
+        some records. What's more, the summary statistics of text fields and distributions of numerical fields all match 
+        our expectations. Therefore, the dataset is coherent. Finally, through the check of counting medals amount in different 
+        sports, the data should be correct. However, the unbalance amounts of records in different sports may make it difficult to
+        explore general conclusions in this dataset.</a></p>
       </div>
-
     
       <div class="page-header">
 	<h2>Is the data complete?</h2>
 	<p>If not, what is missing and what concerns does it raise?
 	What is your evidence for this?</p>
+	
+	<div class="text-info">
+	<p>No. Some fields of a small part of the records are missing. In general, some of the ages, heights and weights
+		are missing. A histogram of the missing values in each column is shown below.
+	</p>
+	<img src="img/NaN_col_dist.png" alt="Missing values in each column" width="50%"/>	
+	<p>To investigate the reasons of these missing values, we generate the histogram of the 'Year' field of the records with
+	    missing values. The histogram is shown below.	
+	</p>
+	<img src="img/NaN_year_dist.png" alt="Missing value histogram grouped by year" width="50%"/>
+	<p>From this histogram, we know that the majority of the missing values come from early records. It is reasonble because 
+	   some records of the athletes might loss, and the data management technology at that days was not as good as nowadays. 
+	   Rows with missing data are deleted before the further data processing, because it will be difficult to generate alternative 
+	   data for these fields.
+	</p>
+	<p>After the deletion, the remaining data should not be considered complete. Since more early records than recent records are deleted, 
+	    it might introduce biases in the interpretation.
+	</p>
+	</div>
       </div>
       
       <div class="page-header">
@@ -61,12 +83,145 @@
 	<p>Does it make sense relative to itself? Does it match your
 	expectations? Are the distributions sensible? What is your
 	evidence for this?</p>
+	
+	<div class="text-info">
+	<p>The data make sense relative to itself. Summary statistics of each column are shown below.
+	</p>
+	<table class="table">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Sex</th>
+      <th>Age</th>
+      <th>Height</th>
+      <th>Weight</th>
+      <th>Team</th>
+      <th>NOC</th>
+      <th>Games</th>
+      <th>Year</th>
+      <th>Season</th>
+      <th>City</th>
+      <th>Sport</th>
+      <th>Event</th>
+      <th>Medal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+      <td>30181</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>20767</td>
+      <td>20732</td>
+      <td>2</td>
+      <td>50</td>
+      <td>86</td>
+      <td>183</td>
+      <td>263</td>
+      <td>143</td>
+      <td>51</td>
+      <td>35</td>
+      <td>2</td>
+      <td>42</td>
+      <td>55</td>
+      <td>562</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>94406</td>
+      <td>Michael Fred Phelps, II</td>
+      <td>M</td>
+      <td>23</td>
+      <td>180</td>
+      <td>70</td>
+      <td>United States</td>
+      <td>USA</td>
+      <td>2008 Summer</td>
+      <td>2008</td>
+      <td>Summer</td>
+      <td>London</td>
+      <td>Athletics</td>
+      <td>Ice Hockey Men's Ice Hockey</td>
+      <td>Gold</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>28</td>
+      <td>28</td>
+      <td>19831</td>
+      <td>2742</td>
+      <td>1715</td>
+      <td>1254</td>
+      <td>4273</td>
+      <td>4383</td>
+      <td>2035</td>
+      <td>2035</td>
+      <td>25341</td>
+      <td>2231</td>
+      <td>3648</td>
+      <td>1001</td>
+      <td>10167</td>
+    </tr>
+  </tbody>
+</table>
+	<p>Statistics of text fields are reasonable. For numerical fields, visualizations of their distributions might be more helpful.
+	    The distributions of 'Age', 'Height', 'Weight' and 'Year' are shown below.
+	</p>
+	<img src="img/Age_dist.png" alt="Age distribution" width="50%"/>
+	<img src="img/Height_dist.png" alt="Height distribution" width="50%"/>
+	<img src="img/Weight_dist.png" alt="Weight distribution" width="50%"/>
+	<img src="img/Year_dist.png" alt="Year distribution" width="50%"/>
+	<p>These distributions match our expectation. For example, more and more athletes participate in the Olympic Games, which can be 
+	    shown by the distribution of 'Year'. The data point range of 'Age', 'Height' and 'Weight' also match our common impression.
+	    Therefore, the data is coherent.
+	</p>
+	</div>
       </div>
 
       <div class="page-header">
 	<h2>Is the data correct?</h2>
 	<p>What aspects of this data can you verify? How did you do so? What did
 	you find?</p>
+	
+	<div class="text-info">
+	<p>The data itself should be correct, because there will be official records of the Olympic participants.
+	    However, due to the missing values, the conclusion drawn from this data might be biased, as shown in the section
+	    discussing the completeness of the data.
+	</p>
+	<p>In addition, the difference in the sample sizes of different sports might also make it difficult to investigate a general conclusion.
+	    The below histogram shows the number of Gold medalists in different sports.
+	</p>
+	<img src="img/Gold_sport_count.png" alt="Gold medalists in different sports" width="80%"/>
+	<p>Directly using all records to explore the global structure may lead to the Simpson's Paradox, when there is a large unbalance
+	    between different groups of data. The histogram of Silver medalists is shown below.
+	</p>
+	<img src="img/Silver_sport_count.png" alt="Silver medalists in different sports" width="80%"/>
+	<p>And the histogram of Bronze medalists is also shown below.
+	</p>
+	<img src="img/Silver_sport_count.png" alt="Silver medalists in different sports" width="80%"/>
+	<p>As shown by the three histograms above, the distributions are similar. Therefore, in terms of the medal counts in different sports,
+	    the data should be correct. 
+	<p/>
+	</div>
       </div>
 
     </div> <!-- /container -->
